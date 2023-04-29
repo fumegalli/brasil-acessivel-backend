@@ -11,10 +11,9 @@ datasource db {
 }
 
 model Report {
-  id        String   @id @map("_id")
-  placeId   String
-  muteness  Boolean
-  createdAt DateTime @default(now())
+  id       String  @id @map("_id")
+  placeId  String
+  muteness Boolean
 
   @@index([placeId])
 }
