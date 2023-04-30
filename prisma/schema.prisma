@@ -11,9 +11,16 @@ datasource db {
 }
 
 model Report {
-  id       String  @id @map("_id")
-  placeId  String
-  muteness Boolean
+  id                 String  @id @map("_id")
+  placeId            String
+  muteness           Boolean
+  blindness          Boolean
+  guideDog           Boolean
+  hearingImpairment  Boolean
+  learningImpairment Boolean
+  mobilityImpairment Boolean
+  visualImpairment   Boolean
+  wheelchair         Boolean
 
   @@index([placeId])
 }
