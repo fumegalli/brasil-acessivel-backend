@@ -14,7 +14,7 @@ export interface ReportProps {
 
 export class Report {
   private _id: string;
-  private props: ReportProps;
+  public props: ReportProps;
 
   constructor(props: ReportProps, id: string = randomUUID()) {
     this._id = id;
