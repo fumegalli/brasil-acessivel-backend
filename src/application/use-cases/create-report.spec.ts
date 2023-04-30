@@ -1,4 +1,4 @@
-import { makeReport } from 'test/factories/report-factory';
+import { makeReport } from '../../../test/factories/report-factory';
 import { InMemoryReportsRepository } from '../../../test/repositories/in-memory-reports-repository';
 import { CreateReport } from './create-report';
 

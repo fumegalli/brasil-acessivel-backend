@@ -1,4 +1,4 @@
-import { Report, ReportProps } from 'src/application/entities/report';
+import { Report, ReportProps } from '../../src/application/entities/report';
 
 export function makeReport(override: Partial<ReportProps> = {}) {
   return new Report({
