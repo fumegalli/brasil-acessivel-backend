@@ -15,10 +15,12 @@ export class PrismaReportsRepository implements ReportsRepository {
     });
   }
 
-  async findManyByPlaceId(placeId: string): Promise<Report[]> {
+  async findManyByPlaces(ids: string[]): Promise<Report[]> {
     const rawReports = await this.prisma.report.findMany({
       where: {
-        placeId,
+        placeId: {
+          in: ids,
+        },
       },
     });
     return rawReports.map(PrismaReportMapper.toEntity);

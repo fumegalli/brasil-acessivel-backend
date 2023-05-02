@@ -8,7 +8,7 @@ export class InMemoryReportsRepository implements ReportsRepository {
     this.reports.push(report);
   }
 
-  async findManyByPlaceId(placeId: string): Promise<Report[]> {
-    return this.reports.filter((report) => report.placeId === placeId);
+  async findManyByPlaces(ids: string[]): Promise<Report[]> {
+    return this.reports.filter((report) => ids.includes(report.placeId));
   }
 }

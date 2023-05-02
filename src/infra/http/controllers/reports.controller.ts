@@ -1,14 +1,15 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { CreateReport } from 'src/application/use-cases/create-report';
 import { CreateReportBody } from '../dtos/create-report-body';
+import { FindReportsByPlacesBody } from '../dtos/find-reports-by-places-body';
 import { ReportMapper } from '../mappers/report-mapper';
-import { FindPlaceAccessibleFeatures } from 'src/application/use-cases/find-place-accessible-features';
+import { FindPlacesAccessibleFeatures } from 'src/application/use-cases/find-places-accessible-features';
 
 @Controller('reports')
 export class ReportsController {
   constructor(
     private readonly createReport: CreateReport,
-    private readonly findPlaceAccessibleFeatures: FindPlaceAccessibleFeatures,
+    private readonly findPlaceAccessibleFeatures: FindPlacesAccessibleFeatures,
   ) {}
 
   @Post()
@@ -29,12 +30,11 @@ export class ReportsController {
     };
   }
 
-  @Get('/place/:placeId')
-  async findAllByPlaceId(@Param('placeId') placeId: string) {
-    const { accessibleFeatures } =
-      await this.findPlaceAccessibleFeatures.execute({
-        placeId,
-      });
-    return { accessibleFeatures };
+  @Post('/places')
+  async findAllByPlaceId(@Body() body: FindReportsByPlacesBody) {
+    const { places } = await this.findPlaceAccessibleFeatures.execute({
+      places: body.places,
+    });
+    return { places };
   }
 }
