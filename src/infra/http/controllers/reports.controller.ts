@@ -4,7 +4,14 @@ import { CreateReportBody } from '../dtos/create-report-body';
 import { FindReportsByPlacesBody } from '../dtos/find-reports-by-places-body';
 import { ReportMapper } from '../mappers/report-mapper';
 import { FindPlacesAccessibleFeatures } from 'src/application/use-cases/find-places-accessible-features';
+import {
+  ApiBody,
+  ApiTags,
+  ApiCreatedResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 
+@ApiTags('Reporte')
 @Controller('reports')
 export class ReportsController {
   constructor(
@@ -13,6 +20,8 @@ export class ReportsController {
   ) {}
 
   @Post()
+  @ApiBody({ type: CreateReportBody })
+  @ApiCreatedResponse()
   async create(@Body() body: CreateReportBody) {
     const { report } = await this.createReport.execute({
       placeId: body.placeId,
@@ -31,6 +40,8 @@ export class ReportsController {
   }
 
   @Post('/places')
+  @ApiBody({ type: FindReportsByPlacesBody })
+  @ApiOkResponse()
   async findAllByPlaceId(@Body() body: FindReportsByPlacesBody) {
     const { places } = await this.findPlaceAccessibleFeatures.execute({
       places: body.places,
