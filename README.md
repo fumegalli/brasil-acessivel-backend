@@ -1,5 +1,5 @@
 # Brasil Acessível Backend
-> A website to help impaired people find and evaluate accessible places in Brazil.
+A website to help impaired people find and evaluate accessible places in Brazil.
 
 ![application gif](./docs/app.gif)
 
